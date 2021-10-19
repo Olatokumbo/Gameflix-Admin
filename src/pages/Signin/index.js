@@ -11,6 +11,26 @@ const useStyles = makeStyles({
     color: "white",
     width: 250,
     height: "auto",
+    "& label.Mui-focused": {
+      color: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#F12424",
+    },
+  },
+  btn: {
+    backgroundColor: "#F12424",
+    width: "100%",
+    padding: 10,
+    marginTop: 5,
+    "&:hover": {
+      backgroundColor: "#F12424",
+      boxShadow: "none",
+    },
+    "&:active": {
+      boxShadow: "none",
+      backgroundColor: "#F12424",
+    },
   },
 });
 const Signin = () => {
@@ -37,7 +57,7 @@ const Signin = () => {
               InputProps={{
                 className: classes.input,
               }}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               value={username}
               fullWidth
             />
@@ -55,9 +75,15 @@ const Signin = () => {
               value={password}
               fullWidth
             />
-            <Button className={style.btn} variant="contained" color="primary">
+            <Button
+              disabled={!(username && password)}
+              className={classes.btn}
+              variant="contained"
+              color="primary"
+            >
               Submit
             </Button>
+            <Typography className={style.errorMsg}>Error Message!</Typography>
           </form>
         </div>
       </div>

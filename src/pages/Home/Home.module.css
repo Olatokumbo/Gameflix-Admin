@@ -1,0 +1,11 @@
+.home {
+  padding: 1rem;
+  background-color: black;
+  flex: 1;
+}
+
+.postersMain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

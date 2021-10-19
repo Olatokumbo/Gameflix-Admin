@@ -1,0 +1,10 @@
+.posterImage {
+  width: 9rem;
+  height: auto;
+  margin: 1rem;
+  transition: all .2s ease-in-out;
+}
+
+.posterImage:hover{
+    transform: scale(1.1);
+}

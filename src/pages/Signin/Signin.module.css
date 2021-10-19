@@ -48,11 +48,15 @@
   /* width: 80%; */
 }
 
-
 .btn {
   width: 100%;
   padding: 1rem !important;
   margin-top: 0.5rem !important;
+}
+.errorMsg {
+  margin: 0.5rem auto !important;
+  font-size: small !important;
+  color: #ffffff !important;
 }
 
 @media only screen and (max-width: 800px) {
