@@ -1,0 +1,23 @@
+.reviewCard {
+  display: flex;
+  margin: 1rem 0;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  max-width: 35rem;
+  border-top: 0.5px solid rgb(87, 87, 87);
+  /* border-bottom: 0.5px solid rgb(87, 87, 87); */
+}
+
+.main {
+  display: flex;
+  padding: 0 1rem;
+}
+
+.username {
+  font-size: small !important;
+  color: #e8e8e8 !important;
+}
+
+.comment {
+  font-size: small !important;
+}

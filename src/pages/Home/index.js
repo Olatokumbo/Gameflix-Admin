@@ -43,6 +43,8 @@ const Home = () => {
           <PosterCard />
           <PosterCard />
           <PosterCard />
+          <PosterCard />
+          <PosterCard />
         </div>
       </div>
     </div>

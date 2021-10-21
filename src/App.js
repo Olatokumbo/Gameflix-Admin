@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home, Signin } from "./pages";
+import { GameInfo, Home, Signin } from "./pages";
 import "./App.css";
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/signin" component={Signin} />
+        <Route path="/game" component={GameInfo} />
       </Switch>
     </Router>
   );
