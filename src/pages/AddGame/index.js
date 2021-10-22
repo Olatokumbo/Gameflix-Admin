@@ -9,7 +9,6 @@ import {
   InputLabel,
   MenuItem,
 } from "@material-ui/core";
-import { UploadIcon } from "@material-ui/icons";
 import style from "./AddGame.module.css";
 
 const useStyles = makeStyles({

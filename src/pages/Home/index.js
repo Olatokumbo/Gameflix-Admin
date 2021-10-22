@@ -1,8 +1,6 @@
 import React from "react";
 import style from "./Home.module.css";
 import { Button, makeStyles } from "@material-ui/core";
-
-import Navbar from "../../components/Navbar";
 import PosterCard from "../../components/PosterCard";
 
 const useStyles = makeStyles({
@@ -25,7 +23,6 @@ const Home = () => {
   const classes = useStyles();
   return (
     <div style={{ backgroundColor: "black", height: "100vh" }}>
-      <Navbar />
       <div className={style.home}>
         <Button className={classes.btn} variant="contained" color="primary">
           Add Game
