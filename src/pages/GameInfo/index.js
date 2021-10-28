@@ -1,12 +1,13 @@
 import React from "react";
 import style from "./GameInfo.module.css";
 import { StarRounded } from "@material-ui/icons";
-import { Button, makeStyles } from "@material-ui/core";
+import { Button, CircularProgress, makeStyles } from "@material-ui/core";
 
 import bg from "../../assets/bg2.jpg";
 import { Typography } from "@material-ui/core";
 import ReviewCard from "../../components/ReviewCard";
 import Map from "../../components/Map";
+import useFetchGameInfo from "../../hooks/useFetchGameInfo";
 
 const useStyles = makeStyles({
   dltBtn: {
@@ -24,21 +25,21 @@ const useStyles = makeStyles({
   },
 });
 
-const GameInfo = () => {
+const GameInfo = ({ match: { params } }) => {
   const classes = useStyles();
+  const [game, loading] = useFetchGameInfo(params.id);
+  console.log(game.reviews);
   return (
     <div className={style.gameMain}>
       <div className={style.left}>
-        <img src={bg} className={style.wallpaper} alt="wallpaper" />
+        <img src={game.coverURL} className={style.wallpaper} alt="wallpaper" />
         <div className={style.mainContent}>
           <div className={style.header}>
             <div>
-              <Typography className={style.title}>
-                Call of Duty Cold War
-              </Typography>
+              <Typography className={style.title}>{game.title}</Typography>
               <div className={style.ratingsContainer}>
-                <StarRounded />
-                <Typography className={style.rating}>5.6</Typography>
+                {/* <StarRounded /> */}
+                <Typography className={style.rating}>{game.genre}</Typography>
               </div>
             </div>
             <div className={style.mainControllers}>
@@ -50,15 +51,20 @@ const GameInfo = () => {
           </div>
           <Typography className={style.reviewsTitle}>Reviews</Typography>
           <div className={style.reviews}>
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
+            {loading ? (
+              <CircularProgress />
+            ) : game?.reviews?.length > 0 ? (
+              game.reviews.map((review) => (
+                <ReviewCard key={review._id} review={review} />
+              ))
+            ) : (
+              <Typography className={style.noReviews}>No reviews</Typography>
+            )}
           </div>
         </div>
       </div>
       <div className={style.right}>
-        <Map coords={{ lat: 6.54881, lng: 3.38683 }}/>
+        <Map coords={{ lat: 55.3781, lng: -6.4360 }} reviews={game.reviews}/>
       </div>
     </div>
   );

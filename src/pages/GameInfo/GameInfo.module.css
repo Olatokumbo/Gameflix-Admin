@@ -13,6 +13,7 @@
   width: 100%;
   height: 20rem;
   object-fit: cover;
+  object-position: top center;
 }
 
 .mainContent {
@@ -65,6 +66,12 @@
   align-items: center;
   position: sticky;
   height: 100vh;
+}
+
+.noReviews {
+  color: white !important;
+  margin: 2rem 0 !important;
+
 }
 
 @media only screen and (max-width: 900px) {

@@ -6,14 +6,14 @@ import "./App.css";
 
 const App = () => {
   return (
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/" component={Home} />
-          <PublicRoute path="/signin" component={Signin} />
-          <PrivateRoute path="/game" component={GameInfo} />
-          <PrivateRoute path="/add" component={AddGame} />
-        </Switch>
-      </Router>
+    <Router>
+      <Switch>
+        <PrivateRoute exact path="/" component={Home} />
+        <PublicRoute path="/signin" component={Signin} />
+        <PrivateRoute path="/game/:id" component={GameInfo} />
+        <PrivateRoute path="/add" component={AddGame} />
+      </Switch>
+    </Router>
   );
 };
 

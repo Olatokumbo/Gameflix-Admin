@@ -1,10 +1,12 @@
 .posterImage {
   width: 9rem;
-  height: auto;
+  height: 14rem;
   margin: 1rem;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  object-fit: cover;
+  /* object-position: top center; */
 }
 
-.posterImage:hover{
-    transform: scale(1.1);
+.posterImage:hover {
+  transform: scale(1.1);
 }

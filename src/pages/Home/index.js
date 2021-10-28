@@ -1,7 +1,9 @@
 import React from "react";
 import style from "./Home.module.css";
-import { Button, makeStyles } from "@material-ui/core";
+import { Button, makeStyles, CircularProgress } from "@material-ui/core";
 import PosterCard from "../../components/PosterCard";
+import { Link, useHistory } from "react-router-dom";
+import useFetchGames from "../../hooks/useFetchGames";
 
 const useStyles = makeStyles({
   btn: {
@@ -21,27 +23,30 @@ const useStyles = makeStyles({
 
 const Home = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const [games, loading] = useFetchGames();
   return (
     <div style={{ backgroundColor: "black", height: "100vh" }}>
       <div className={style.home}>
-        <Button className={classes.btn} variant="contained" color="primary">
+        <Button
+          onClick={() => history.push("/add")}
+          className={classes.btn}
+          variant="contained"
+          color="primary"
+        >
           Add Game
         </Button>
+
         <div className={style.postersMain}>
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
-          <PosterCard />
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            games.map((game) => (
+              <Link key={game._id} to={`/game/${game._id}`}>
+                <PosterCard game={game} />
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>

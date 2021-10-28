@@ -11,8 +11,12 @@
 .main {
   display: flex;
   padding: 0 1rem;
+  width: 100%;
 }
 
+.content {
+  width: 100%;
+}
 .username {
   font-size: small !important;
   color: #e8e8e8 !important;

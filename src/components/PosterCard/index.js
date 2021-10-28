@@ -3,10 +3,10 @@ import style from "./PosterCard.module.css";
 
 import poster from "../../assets/gamePoster.jpg";
 
-const PosterCard = () => {
+const PosterCard = ({ game }) => {
   return (
     <div className={style.posterCard}>
-      <img className={style.posterImage} src={poster} alt="poster" />
+      <img className={style.posterImage} src={game.posterURL} alt="poster" />
     </div>
   );
 };
