@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, IconButton, Typography } from "@material-ui/core";
-import { Rating } from "@material-ui/lab";
 import { Delete } from "@material-ui/icons";
+import { StarRounded } from "@material-ui/icons";
 import style from "./ReviewCard.module.css";
 
 const ReviewCard = ({ review }) => {
@@ -10,11 +10,18 @@ const ReviewCard = ({ review }) => {
       <Avatar sx={{ width: 30, height: 30 }} />
       <div className={style.main}>
         <div className={style.content}>
-          <Typography className={style.username}>{review.userId}</Typography>
-          <Rating value={review.rating} readOnly />
+          <div className={style.topContent}>
+            <Typography className={style.username}>
+              {review.username}
+            </Typography>
+            <div className={style.ratingsMain}>
+              <StarRounded className={style.star} />
+              <Typography className={style.rating}>{review.rating}</Typography>
+            </div>
+          </div>
           <Typography className={style.comment}>{review.comment}</Typography>
         </div>
-        <IconButton color="secondary">
+        <IconButton color="secondary" className={style.iconButton}>
           <Delete />
         </IconButton>
       </div>

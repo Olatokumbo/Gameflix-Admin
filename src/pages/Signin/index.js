@@ -1,7 +1,9 @@
 import { TextField, Typography, Button, makeStyles } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./Signin.module.css";
 import Logo from "../../assets/logo.png";
+import axios from "axios";
+import { AppContext } from "../../context/AppContext";
 
 const useStyles = makeStyles({
   root: {
@@ -33,10 +35,40 @@ const useStyles = makeStyles({
     },
   },
 });
+
 const Signin = () => {
   const classes = useStyles();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const {
+    auth: [isAuth, setIsAuth],
+  } = useContext(AppContext);
+
+  const signinForm = () => {
+    console.log("Signin");
+    axios
+      .post(
+        "http://localhost:8000/admin/signin",
+        { username, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setError("");
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        setIsAuth(true);
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  };
+
   return (
     <div className={style.signin}>
       <div className={style.left}>
@@ -78,12 +110,13 @@ const Signin = () => {
             <Button
               disabled={!(username && password)}
               className={classes.btn}
+              onClick={signinForm}
               variant="contained"
               color="primary"
             >
               Submit
             </Button>
-            <Typography className={style.errorMsg}>Error Message!</Typography>
+            <Typography className={style.errorMsg}>{error}</Typography>
           </form>
         </div>
       </div>

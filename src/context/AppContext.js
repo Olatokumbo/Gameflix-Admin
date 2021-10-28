@@ -3,10 +3,28 @@ import axios from "axios";
 export const AppContext = createContext();
 
 const AppProvider = (props) => {
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
-  useEffect(()=>{
-    
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+    console.log(token);
+
+    axios
+      .get("http://localhost:8000/admin", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setIsAuth(true);
+        // if (response.data === token) setIsAuth(true);
+        // else {
+        //   localStorage.removeItem("token");
+        //   setIsAuth(false);
+        // }
+      });
   }, []);
 
   return (

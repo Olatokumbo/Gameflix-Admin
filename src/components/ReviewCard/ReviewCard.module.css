@@ -17,11 +17,34 @@
 .content {
   width: 100%;
 }
+
+.topContent {
+  display: flex;
+  align-items: center;
+}
 .username {
   font-size: small !important;
   color: #e8e8e8 !important;
+  margin-right: 5px !important;
+}
+.ratingsMain {
+  display: flex;
+  align-items: center;
+  color: #ffc107 !important;
 }
 
+.star {
+  color: #ffc107 !important;
+}
+
+.rating {
+  font-weight: bold !important;
+}
 .comment {
   font-size: small !important;
+}
+
+.iconButton{
+  height: fit-content !important;
+  width:  fit-content !important;
 }

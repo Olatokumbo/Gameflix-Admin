@@ -12,7 +12,7 @@ const useFetchGames = () => {
       .get(`http://localhost:8000/admin/game/list`, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjE3MWM5YWVlZGM1MDdmMTc5YTdkMzExIiwidXNlcm5hbWUiOiJkYXZpZDAiLCJpYXQiOjE2MzQ5MjY0NjB9.B2M8NWrDjRT_Y2gZVDH_vDOAith_FSG41qJnLq5M4aE",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjE3MWM5YWVlZGM1MDdmMTc5YTdkMzExIiwidXNlcm5hbWUiOiJkYXZpZDAiLCJpYXQiOjE2MzU0MzQ2MTZ9.R4Q-ABFUfud1qT9nSV2x00HoqBKGn15Qjw7gtW-CDUI",
         },
       })
       .then((response) => {
