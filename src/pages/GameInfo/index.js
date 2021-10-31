@@ -32,7 +32,11 @@ const GameInfo = ({ match: { params } }) => {
   return (
     <div className={style.gameMain}>
       <div className={style.left}>
-        <img src={game.coverURL} className={style.wallpaper} alt="wallpaper" />
+        <img
+          src={`http://localhost:8000/admin/game/image/${game.coverURL}`}
+          className={style.wallpaper}
+          alt="wallpaper"
+        />
         <div className={style.mainContent}>
           <div className={style.header}>
             <div>
@@ -64,7 +68,7 @@ const GameInfo = ({ match: { params } }) => {
         </div>
       </div>
       <div className={style.right}>
-        <Map coords={{ lat: 55.3781, lng: -6.4360 }} reviews={game.reviews}/>
+        <Map coords={{ lat: 55.3781, lng: -6.436 }} reviews={game.reviews} />
       </div>
     </div>
   );

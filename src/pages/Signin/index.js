@@ -43,7 +43,7 @@ const Signin = () => {
   const [error, setError] = useState("");
 
   const {
-    auth: [isAuth, setIsAuth],
+    auth: [_isAuth, setIsAuth],
   } = useContext(AppContext);
 
   const signinForm = () => {
@@ -65,7 +65,7 @@ const Signin = () => {
         setIsAuth(true);
       })
       .catch((err) => {
-        setError(err.response.data.message);
+        setError(err.response?.data.message);
       });
   };
 

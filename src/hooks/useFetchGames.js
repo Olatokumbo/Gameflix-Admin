@@ -7,12 +7,13 @@ const useFetchGames = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log("Loading...");
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+
     axios
       .get(`http://localhost:8000/admin/game/list`, {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjE3MWM5YWVlZGM1MDdmMTc5YTdkMzExIiwidXNlcm5hbWUiOiJkYXZpZDAiLCJpYXQiOjE2MzU0MzQ2MTZ9.R4Q-ABFUfud1qT9nSV2x00HoqBKGn15Qjw7gtW-CDUI",
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {

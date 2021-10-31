@@ -43,7 +43,7 @@ const Home = () => {
           ) : (
             games.map((game) => (
               <Link key={game._id} to={`/game/${game._id}`}>
-                <PosterCard game={game} />
+                <PosterCard id={game.posterURL} />
               </Link>
             ))
           )}

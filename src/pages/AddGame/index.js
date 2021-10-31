@@ -9,6 +9,8 @@ import {
   InputLabel,
   MenuItem,
 } from "@material-ui/core";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import style from "./AddGame.module.css";
 
 const useStyles = makeStyles({
@@ -47,10 +49,16 @@ const useStyles = makeStyles({
   },
 });
 
+let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+
+
 const AddGame = () => {
+  const history = useHistory();
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("shooter");
+  const [loading, setLoading] = useState(false);
   const [posterPhoto, setPosterPhoto] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(null);
 
@@ -62,6 +70,32 @@ const AddGame = () => {
   const handleCoverUpload = (e) => {
     const files = Array.from(e.target.files);
     setCoverPhoto(files[0]);
+  };
+
+  const uploadGame = () => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("genre", genre);
+    formData.append("coverPhoto", coverPhoto);
+    formData.append("posterPhoto", posterPhoto);
+
+    axios
+      .post("http://localhost:8000/admin/game/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization:
+            `Bearer ${token}`,
+        },
+      })
+      .then((_data) => {
+        alert("New Game Uploaded");
+        history.push("/");
+      })
+      .catch((err) => {
+        alert(err.message);
+        setLoading(false);
+      });
   };
   return (
     <div className={style.addGame}>
@@ -145,14 +179,17 @@ const AddGame = () => {
             />
           </div>
           <Button
-            //   disabled={!(username && password)}
+            disabled={
+              !(title && genre && posterPhoto && coverPhoto && !loading)
+            }
             className={classes.btn}
             variant="contained"
             color="primary"
+            onClick={uploadGame}
           >
             Submit
           </Button>
-          <Typography className={style.errorMsg}>Error Message!</Typography>
+          {/* <Typography className={style.errorMsg}>Error Message!</Typography> */}
         </form>
       </div>
     </div>
