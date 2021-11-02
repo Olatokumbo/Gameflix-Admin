@@ -1,12 +1,10 @@
 import React from "react";
 import style from "./GameInfo.module.css";
-import { StarRounded } from "@material-ui/icons";
 import { Button, CircularProgress, makeStyles } from "@material-ui/core";
-
-import bg from "../../assets/bg2.jpg";
 import { Typography } from "@material-ui/core";
 import ReviewCard from "../../components/ReviewCard";
 import Map from "../../components/Map";
+import { useHistory } from "react-router-dom";
 import useFetchGameInfo from "../../hooks/useFetchGameInfo";
 
 const useStyles = makeStyles({
@@ -27,8 +25,8 @@ const useStyles = makeStyles({
 
 const GameInfo = ({ match: { params } }) => {
   const classes = useStyles();
+  const history = useHistory();
   const [game, loading] = useFetchGameInfo(params.id);
-  console.log(game.reviews);
   return (
     <div className={style.gameMain}>
       <div className={style.left}>
@@ -47,7 +45,12 @@ const GameInfo = ({ match: { params } }) => {
               </div>
             </div>
             <div className={style.mainControllers}>
-              <Button variant="contained">Edit</Button>
+              <Button
+                variant="contained"
+                onClick={() => history.push(`/game/${game._id}/edit`)}
+              >
+                Edit
+              </Button>
               <Button variant="contained" className={classes.dltBtn}>
                 Delete
               </Button>

@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AddGame, GameInfo, Home, Signin } from "./pages";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { AddGame, GameInfo, Home, Signin, EditGame } from "./pages";
 import { PrivateRoute, PublicRoute } from "./hoc";
 import "./App.css";
 
@@ -9,9 +9,10 @@ const App = () => {
     <Router>
       <Switch>
         <PrivateRoute exact path="/" component={Home} />
-        <PublicRoute path="/signin" component={Signin} />
-        <PrivateRoute path="/game/:id" component={GameInfo} />
-        <PrivateRoute path="/add" component={AddGame} />
+        <PublicRoute exact path="/signin" component={Signin} />
+        <PrivateRoute exact path="/game/:id" component={GameInfo} />
+        <PrivateRoute exact path="/add" component={AddGame} />
+        <PrivateRoute exact path="/game/:id/edit" component={EditGame} />
       </Switch>
     </Router>
   );
