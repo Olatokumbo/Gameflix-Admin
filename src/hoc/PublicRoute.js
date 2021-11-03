@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { AppContext } from "../context/AppContext";
 
 const PublicRoute = ({ component: Component, ...rest }) => {

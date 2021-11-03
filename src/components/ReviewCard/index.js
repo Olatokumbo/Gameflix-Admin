@@ -2,9 +2,33 @@ import React from "react";
 import { Avatar, IconButton, Typography } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { StarRounded } from "@material-ui/icons";
+import axios from "axios";
 import style from "./ReviewCard.module.css";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, gameId }) => {
+  const deleteReview = () => {
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+    axios
+      .post(
+        `http://localhost:8000/admin/game/${gameId}/review/delete`,
+        {
+          reviewId: review._id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((_data) => {
+        alert("Comment Deleted");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
   return (
     <div className={style.reviewCard}>
       <Avatar sx={{ width: 30, height: 30 }} />
@@ -21,7 +45,11 @@ const ReviewCard = ({ review }) => {
           </div>
           <Typography className={style.comment}>{review.comment}</Typography>
         </div>
-        <IconButton color="secondary" className={style.iconButton}>
+        <IconButton
+          color="secondary"
+          className={style.iconButton}
+          onClick={deleteReview}
+        >
           <Delete />
         </IconButton>
       </div>

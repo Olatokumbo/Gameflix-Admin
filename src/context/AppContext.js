@@ -8,7 +8,6 @@ const AppProvider = (props) => {
   useEffect(() => {
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
-    console.log(token);
 
     axios
       .get("http://localhost:8000/admin", {

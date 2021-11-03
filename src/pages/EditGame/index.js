@@ -50,10 +50,8 @@ const EditGame = () => {
   const classes = useStyles();
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("shooter");
-  const [lloading, setlLoading] = useState(false);
 
   useEffect(() => {
-    console.log("LOADING>>>>>>");
     setTitle(game?.title);
     setGenre(game?.genre);
     // return () => {
@@ -64,7 +62,6 @@ const EditGame = () => {
   const editGame = () => {
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
-    setlLoading(true);
     axios
       .post(
         `http://localhost:8000/admin/game/${id}/edit`,
@@ -79,13 +76,11 @@ const EditGame = () => {
           },
         }
       )
-      .then((response) => {
-        setlLoading(false);
+      .then(() => {
         alert("Game has been updated");
         history.push(`/game/${id}`);
       })
       .catch((err) => {
-        setlLoading(false);
         alert(err.message);
       });
   };

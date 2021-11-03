@@ -6,6 +6,7 @@ import ReviewCard from "../../components/ReviewCard";
 import Map from "../../components/Map";
 import { useHistory } from "react-router-dom";
 import useFetchGameInfo from "../../hooks/useFetchGameInfo";
+import axios from "axios";
 
 const useStyles = makeStyles({
   dltBtn: {
@@ -27,6 +28,28 @@ const GameInfo = ({ match: { params } }) => {
   const classes = useStyles();
   const history = useHistory();
   const [game, loading] = useFetchGameInfo(params.id);
+
+  const deleteGame = () => {
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+    axios
+      .post(
+        `http://localhost:8000/admin/game/${params.id}/delete`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        alert("Game has been deleted");
+        history.push(`/`);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
   return (
     <div className={style.gameMain}>
       <div className={style.left}>
@@ -51,7 +74,11 @@ const GameInfo = ({ match: { params } }) => {
               >
                 Edit
               </Button>
-              <Button variant="contained" className={classes.dltBtn}>
+              <Button
+                variant="contained"
+                className={classes.dltBtn}
+                onClick={deleteGame}
+              >
                 Delete
               </Button>
             </div>
@@ -62,7 +89,11 @@ const GameInfo = ({ match: { params } }) => {
               <CircularProgress />
             ) : game?.reviews?.length > 0 ? (
               game.reviews.map((review) => (
-                <ReviewCard key={review._id} review={review} />
+                <ReviewCard
+                  key={review._id}
+                  review={review}
+                  gameId={params.id}
+                />
               ))
             ) : (
               <Typography className={style.noReviews}>No reviews</Typography>
