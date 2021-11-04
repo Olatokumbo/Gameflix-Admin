@@ -8,9 +8,10 @@ const AppProvider = (props) => {
   useEffect(() => {
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
+    console.log(process.env);
 
     axios
-      .get("http://localhost:8000/admin", {
+      .get(`${process.env.REACT_APP_API_URL}/admin`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

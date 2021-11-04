@@ -6,7 +6,7 @@ const PosterCard = ({ id }) => {
     <div className={style.posterCard}>
       <img
         className={style.posterImage}
-        src={`http://localhost:8000/admin/game/image/${id}`}
+        src={`${process.env.REACT_APP_API_URL}/admin/game/image/${id}`}
         alt="poster"
       />
     </div>

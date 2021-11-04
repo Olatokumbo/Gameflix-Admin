@@ -34,7 +34,7 @@ const GameInfo = ({ match: { params } }) => {
     token = JSON.parse(token);
     axios
       .post(
-        `http://localhost:8000/admin/game/${params.id}/delete`,
+        `${process.env.REACT_APP_API_URL}/admin/game/${params.id}/delete`,
         {},
         {
           headers: {

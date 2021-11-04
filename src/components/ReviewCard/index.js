@@ -11,7 +11,7 @@ const ReviewCard = ({ review, gameId }) => {
     token = JSON.parse(token);
     axios
       .post(
-        `http://localhost:8000/admin/game/${gameId}/review/delete`,
+        `${process.env.REACT_APP_API_URL}/admin/game/${gameId}/review/delete`,
         {
           reviewId: review._id,
         },

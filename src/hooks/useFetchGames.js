@@ -11,7 +11,7 @@ const useFetchGames = () => {
     token = JSON.parse(token);
 
     axios
-      .get(`http://localhost:8000/admin/game/list`, {
+      .get(`${process.env.REACT_APP_API_URL}/admin/game/list`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

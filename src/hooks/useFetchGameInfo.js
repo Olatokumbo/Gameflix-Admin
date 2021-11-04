@@ -10,7 +10,7 @@ const useFetchGameInfo = (controller) => {
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
     axios
-      .get(`http://localhost:8000/admin/game/${controller}`, {
+      .get(`${process.env.REACT_APP_API_URL}/admin/game/${controller}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

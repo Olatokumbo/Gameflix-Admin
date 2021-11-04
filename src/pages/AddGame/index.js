@@ -81,7 +81,7 @@ const AddGame = () => {
     formData.append("posterPhoto", posterPhoto);
 
     axios
-      .post("http://localhost:8000/admin/game/upload", formData, {
+      .post(`${process.env.REACT_APP_API_URL}/admin/game/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization:

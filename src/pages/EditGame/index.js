@@ -64,7 +64,7 @@ const EditGame = () => {
     token = JSON.parse(token);
     axios
       .post(
-        `http://localhost:8000/admin/game/${id}/edit`,
+        `${process.env.REACT_APP_API_URL}/admin/game/${id}/edit`,
         {
           title,
           genre,
