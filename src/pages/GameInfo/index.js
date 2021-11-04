@@ -54,7 +54,7 @@ const GameInfo = ({ match: { params } }) => {
     <div className={style.gameMain}>
       <div className={style.left}>
         <img
-          src={`http://localhost:8000/admin/game/image/${game.coverURL}`}
+          src={`${process.env.REACT_APP_API_URL}/admin/game/image/${game.coverURL}`}
           className={style.wallpaper}
           alt="wallpaper"
         />
